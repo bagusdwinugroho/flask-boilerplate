@@ -1,0 +1,35 @@
+@startuml
+
+package "Flask App" {
+  class App {
+    +route()
+    +run()
+    +config
+  }
+
+  class LoginForm {
+    +username: StringField
+    +password: PasswordField
+  }
+
+  class RegisterForm {
+    +name: StringField
+    +email: StringField
+    +password: PasswordField
+  }
+
+  class ForgotForm {
+    +email: StringField
+  }
+
+  class Request
+  class TemplateRenderer
+
+  App --> LoginForm : uses
+  App --> RegisterForm : uses
+  App --> ForgotForm : uses
+  App --> Request : accesses
+  App --> TemplateRenderer : renders
+}
+
+@enduml

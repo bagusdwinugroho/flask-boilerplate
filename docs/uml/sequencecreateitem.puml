@@ -1,0 +1,16 @@
+@startuml
+actor User
+participant "Create Page (/create)" as CreatePage
+participant "Flask App" as App
+participant "CreateForm" as Form
+participant "Database" as DB
+participant "HTML Template" as Template
+
+User -> CreatePage : akses /create
+CreatePage -> App : route('/create', methods=['GET', 'POST'])
+App -> Form : instansiasi CreateForm(request.form)
+App -> App : if form.validate_on_submit()
+App -> DB : simpan item baru
+App -> Template : redirect atau render_template('forms/create.html', form)
+Template --> User : tampilkan status atau halaman
+@enduml

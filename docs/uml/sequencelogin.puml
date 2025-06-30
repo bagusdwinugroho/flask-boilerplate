@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant "Login Page (/login)" as LoginPage
+participant "Flask App" as App
+participant "LoginForm" as Form
+participant "HTML Template" as Template
+
+User -> LoginPage : akses /login
+LoginPage -> App : route('/login')
+App -> Form : instansiasi LoginForm(request.form)
+App -> Template : render_template('forms/login.html', form)
+Template --> User : tampilkan form login
+@enduml
